@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Steuerstand</h1>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Sportliche Steuerung</h3>
+
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
+          </button>
+        </div>
+        <!-- /.card-tools -->
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-6 text-center">
+            <input type="text" class="gas" data-angleArc="250" data-angleOffset="-125"
+                    value="0" name="left_engine" data-fgColor="blue" data-readOnly="true" disabled="disabled" />
+            <div class="knob-label">Drehzahl linker Motor</div>
+          </div>
+          <div class="col-sm-6 text-center">
+            <input type="text" class="gas" data-angleArc="250" data-angleOffset="-125"
+                    value="0" name="right_engine" data-fgColor="red" data-readOnly="true" disabled="disabled" />
+            <div class="knob-label">Drehzahl rechter Motor</div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+              <div id="engine_left" class="joystick"></div>
+            </div>
+            <div class="col-6">
+              <div id="engine_right" class="joystick"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

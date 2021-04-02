@@ -1,0 +1,50 @@
+{
+  "name": "pondpi",
+  "version": "0.1.0",
+  "description": "Pond Pi Control App",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "dev": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/meinjens/pondpi.git"
+  },
+  "author": "Jens Meinecke",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/meinjens/pondpi/issues"
+  },
+  "homepage": "https://github.com/meinjens/pondpi#readme",
+  "devDependencies": {
+    "@babel/core": "^7.13.13",
+    "@babel/preset-env": "^7.13.12",
+    "@fortawesome/fontawesome-free": "^5.15.3",
+    "@webpack-cli/serve": "^1.3.0",
+    "admin-lte": "^3.1.0",
+    "babel-loader": "^8.2.2",
+    "bootstrap": "^4.6.0",
+    "css-loader": "^5.2.0",
+    "expose-loader": "^2.0.0",
+    "file-loader": "^6.2.0",
+    "jquery": "^3.6.0",
+    "jquery-knob": "^1.2.11",
+    "less": "^4.1.1",
+    "less-loader": "^8.0.0",
+    "mini-css-extract-plugin": "^1.3.9",
+    "node-sass": "^5.0.0",
+    "sass-loader": "^11.0.1",
+    "style-loader": "^2.0.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.28.0",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "nipplejs": "^0.9.0"
+  }
+}
