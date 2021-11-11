@@ -10,3 +10,7 @@ def index():
 @ui.route('/dashboard', methods=["GET"])
 def dashboard():
     return flask.render_template('dashboard.html')
+
+@ui.route('/control-station', methods=["GET"])
+def control_station():
+    return flask.render_template('control-station.html')
