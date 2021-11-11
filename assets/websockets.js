@@ -1,4 +1,4 @@
-let socket = new WebSocket('ws://localhost:5000/ws/echo');
+let socket = new WebSocket('ws://localhost:5000/ws/status');
 
 socket.onopen = function(e) {
   socket.send('My name is John');
