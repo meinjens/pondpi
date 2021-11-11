@@ -1,0 +1,7 @@
+---
+- name: Configure the interface
+  template:
+    dest: '/etc/network/interfaces.d/{{ accesspoint_interface_name }}'
+    src: 'templates/interface-snippet.j2'
+  notify:
+    - restart interface

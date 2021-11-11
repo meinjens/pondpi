@@ -1,0 +1,15 @@
+---
+- name: Disable power management for network device
+  copy:
+    src: 8192cu.conf
+    dest: /etc/modprobe.d/8192cu.conf
+    owner: root
+    group: root
+    mode: 0644
+  when: edimax_7612_enabled |bool
+
+- name: Uninstall configuration for edimax 7612
+  file:
+    path: /etc/modprobe.d/8192cu.conf
+    state: absent
+  when: edimax_7612_enabled |bool

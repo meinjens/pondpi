@@ -1,0 +1,5 @@
+allow-hotplug {{ accesspoint_interface_name }}
+iface {{ accesspoint_interface_name }} inet static
+    address {{ accesspoint_static_address }}
+    netmask 255.255.255.0
+    wireless-power off

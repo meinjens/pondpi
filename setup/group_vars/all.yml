@@ -1,0 +1,5 @@
+ansible_user: "pi"
+
+accesspoint_interface_name: "wlan1"
+accesspoint_ssid: "PondPi"
+accesspoint_passphrase: "{{ accesspoint_passphrase_encrypted }}"

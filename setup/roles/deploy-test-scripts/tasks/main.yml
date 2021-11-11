@@ -1,0 +1,19 @@
+---
+- name: Create scripts folder
+  file:
+    path: "{{ test_scripts_folder }}"
+    state: directory
+    owner: "{{ test_scripts_user }}"
+    group: "{{ test_scripts_group }}"    
+    mode: 0755
+
+- name: Copy tests scripts to destination
+  copy:
+    src: "files/{{ item }}"
+    dest: "{{ test_scripts_folder }}/{{ item }}"
+    owner: "{{ test_scripts_user }}"
+    group: "{{ test_scripts_group }}"
+    mode: 0755
+  with_items:
+    - L298NHBridge.py
+    - L298NHBridgeTest.py

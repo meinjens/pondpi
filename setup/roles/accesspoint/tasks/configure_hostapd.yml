@@ -1,0 +1,34 @@
+---
+- name: Install hostapd package
+  apt:
+    name: hostapd
+    update_cache: yes
+    state: present
+
+- name: Configure hostapd
+  template:
+    src: 'templates/hostapd.conf.j2'
+    dest: '/etc/hostapd/hostapd.conf'
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart hostapd
+
+- name: Point to hostapd.conf
+  copy:
+    dest: '/etc/default/hostapd'
+    src: etc-default-hostapd
+  notify:
+    - restart hostapd
+
+- name: Enable hostapd
+  service:
+    name: hostapd
+    enabled: yes
+
+- name: Start hostapd
+  service:
+    name: hostapd
+    state: started
+  register: hostapd_started

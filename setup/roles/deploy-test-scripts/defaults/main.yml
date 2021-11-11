@@ -1,0 +1,4 @@
+---
+test_scripts_folder: /home/pi/bin
+test_scripts_user: pi
+test_scripts_group: pi

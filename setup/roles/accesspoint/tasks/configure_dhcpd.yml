@@ -1,0 +1,7 @@
+---
+- name: Disable dhcpcd for the interface
+  lineinfile:
+    dest: '/etc/dhcpcd.conf'
+    line: 'denyinterfaces {{ accesspoint_interface_name }}'
+  notify:
+    - restart dhcpcd

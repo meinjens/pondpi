@@ -1,0 +1,19 @@
+---
+- name: restart interface
+  command: 'ifdown {{ accesspoint_interface_name }} && ifup {{ accesspoint_interface_name }}'
+  
+- name: restart dhcpcd
+  service:
+    name: dhcpcd
+    state: restarted
+
+- name: restart dnsmasq
+  service:
+    name: dnsmasq
+    state: restarted
+
+- name: restart hostapd
+  service:
+    name: hostapd
+    state: restarted
+  when: not hostapd_started is changed

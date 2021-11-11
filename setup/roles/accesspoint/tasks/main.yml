@@ -1,0 +1,5 @@
+---
+- include_tasks: configure_dhcpd.yml
+- include_tasks: configure_network.yml
+- include_tasks: configure_dnsmasq.yml
+- include_tasks: configure_hostapd.yml

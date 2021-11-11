@@ -1,0 +1,10 @@
+---
+accesspoint_ssid: "Accesspoint"
+accesspoint_passphrase: "AverySecurePassword"
+accesspoint_interface_name: "wlan1"
+accesspoint_channel: 6
+
+accesspoint_static_address: "192.168.7.1"
+accesspoint_dhcp_network: "192.168.7.1/24"
+accesspoint_dhcp_from: "192.168.7.100"
+accesspoint_dhcp_to: "192.168.7.200"

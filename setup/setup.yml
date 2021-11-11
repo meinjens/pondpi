@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: true
+
+  vars_files:
+    - encrypted/passwords.yml
+
+  roles:
+    - base
+    - edimax-7612
+    - { name: accesspoint, tags: accesspoint }
+    - { name: deploy-test-scripts, tags: deploy-scripts }
