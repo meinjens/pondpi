@@ -1,101 +1,101 @@
-import nipplejs from 'nipplejs';
+/* eslint-disable no-undef */
 
-let steering_engine_left = null;
-let steering_engine_right = null;
+import nipplejs from 'nipplejs'
 
-jquery(document).ready(function() {
-    jquery(".gas").knob();
+let steeringEngineLeft = null
+let steeringEngineRight = null
 
-    steering_engine_left = new WebSocket('ws://localhost:5000/ws/steering/left');
-    steering_engine_right = new WebSocket('ws://localhost:5000/ws/steering/right');
+jquery(document).ready(function () {
+  jquery('.gas').knob()
 
-    steering_engine_left.onopen = function() {
-        console.log('[left] connection to engine');
+  steeringEngineLeft = new WebSocket('ws://localhost:5000/ws/steering/left')
+  steeringEngineRight = new WebSocket('ws://localhost:5000/ws/steering/right')
+
+  steeringEngineLeft.onopen = function() {
+    console.log('[left] connection to engine')
+  }
+  steeringEngineLeft.onclose = function (event) {
+    if (event.wasClean) {
+      console.log(`[left] Connection closed cleanly, code=${event.code} reason=${event.reason}`)
+      console.log(event)
+    } else {
+      console.log('[left] Connection died')
     }
-    steering_engine_left.onclose = function(event) {
-        if (event.wasClean) {
-            console.log(`[left] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
-            console.log(event);
-        } else {
-            console.log('[left] Connection died');
+  }
+  steeringEngineRight.onopen = function () {
+    console.log('[right] connection to engine')
+  }
+  steeringEngineRight.onclose = function (event) {
+    if (event.wasClean) {
+      console.log(`[right] Connection closed cleanly, code=${event.code} reason=${event.reason}`)
+      console.log(event)
+    } else {
+      console.log('[right] Connection died')
+    }
+  }
+
+  const steeringLeft = nipplejs.create({
+    zone: document.getElementById('engine_left'),
+    mode: 'static',
+    position: { left: '50%', top: '50%' },
+    fadeTime: 500,
+    color: 'blue',
+    size: 200,
+    lockY: true
+  })
+
+  steeringLeft
+    .on('start', function (event, data) {
+      console.log('start engine left')
+    })
+    .on('move', function (event, data) {
+      if (data.direction) {
+        console.log('move left: ' + data.direction.y + ' ' + data.distance)
+        const steering = {
+          dir: data.direction.y,
+          dist: data.distance
         }
-    }
-    steering_engine_right.onopen = function() {
-        console.log('[right] connection to engine');
-    }
-    steering_engine_right.onclose = function(event) {
-        if (event.wasClean) {
-            console.log(`[right] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
-            console.log(event);
-        } else {
-            console.log('[right] Connection died');
+        steeringEngineLeft.send(JSON.stringify(steering))
+      }
+    })
+    .on('end', function (event, data) {
+      const steering = {
+        dir: 'center',
+        dist: 0
+      }
+      steeringEngineLeft.send(JSON.stringify(steering))
+    })
+
+  const steeringRight = nipplejs.create({
+    zone: document.getElementById('engine_right'),
+    mode: 'static',
+    position: { left: '50%', top: '50%' },
+    fadeTime: 500,
+    color: 'red',
+    size: 200,
+    lockY: true
+  })
+
+  steeringRight
+    .on('start', function (event, data) {
+      console.log('start engine right')
+    })
+    .on('move', function (event, data) {
+      if (data.direction) {
+        console.log('move left: ' + data.direction.y + ' ' + data.distance)
+        const steering = {
+          dir: data.direction.y,
+          dist: data.distance
         }
-    }
-
-    const steering_left = nipplejs.create({
-        zone: document.getElementById('engine_left'),
-        mode: 'static',
-        position: {left: '50%', top: '50%'},
-        fadeTime: 500,
-        color: 'blue',
-        size: 200,
-        lockY: true,
-    });
-
-    steering_left
-        .on('start', function(event, data) {
-            console.log('start engine left');
-        })
-        .on('move', function(event, data){
-            if (data.direction) {
-                console.log('move left: ' + data.direction.y + ' ' + data.distance);
-                const steering = {
-                    'dir': data.direction.y,
-                    'dist': data.distance
-                };
-                steering_engine_left.send(JSON.stringify(steering));
-            }
-            
-        })
-        .on('end', function(event, data) {
-            const steering = {
-                'dir': 'center',
-                'dist': 0
-            };
-            steering_engine_left.send(JSON.stringify(steering));
-        })
-
-    const steering_right = nipplejs.create({
-        zone: document.getElementById('engine_right'),
-        mode: 'static',
-        position: {left: '50%', top: '50%'},
-        fadeTime: 500,
-        color: 'red',
-        size: 200,
-        lockY: true,
-    });
-
-    steering_right
-        .on('start', function(event, data) {
-            console.log('start engine right');
-        })
-        .on('move', function(event, data){
-            if (data.direction) {
-                console.log('move left: ' + data.direction.y + ' ' + data.distance);
-                const steering = {
-                    'dir': data.direction.y,
-                    'dist': data.distance
-                };
-                steering_engine_right.send(JSON.stringify(steering));
-            }
-        })
-        .on('end', function(event, data) {
-            console.log('stop engine right');
-            const steering = {
-                'dir': 'center',
-                'dist': 0
-            };
-            steering_engine_right.send(JSON.stringify(steering));
-        })
-
-});
+        steeringEngineRight.send(JSON.stringify(steering))
+      }
+    })
+    .on('end', function (event, data) {
+      console.log('stop engine right')
+      const steering = {
+        dir: 'center',
+        dist: 0
+      }
+      steeringEngineRight.send(JSON.stringify(steering))
+    })
+})

@@ -1,3 +1,3 @@
-import './app.css';
-import './controls';
-import './websockets';
+import './app.css'
+import './controls'
+import './websockets'

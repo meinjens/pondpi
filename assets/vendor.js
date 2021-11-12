@@ -1,14 +1,14 @@
 // jquery
-import jquery from 'jquery';
-import 'jquery-knob';
+import jquery from 'jquery'
+import 'jquery-knob'
 
 // bootstrap
-import 'bootstrap';
+import 'bootstrap'
 
 // FA
-import "@fortawesome/fontawesome-free/js/all.js";
-import "@fortawesome/fontawesome-free/css/all.css";
+import '@fortawesome/fontawesome-free/js/all.js'
+import '@fortawesome/fontawesome-free/css/all.css'
 
 // AdminLTE
-import 'admin-lte/build/js/AdminLTE';
-import 'admin-lte/build/scss/adminlte.scss';
+import 'admin-lte/build/js/AdminLTE'
+import 'admin-lte/build/scss/adminlte.scss'
