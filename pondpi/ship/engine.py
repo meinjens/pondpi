@@ -1,4 +1,10 @@
-import RPi.GPIO as io
+import logging as log
+
+try:
+    import RPi.GPIO as io
+except ImportError:
+    print('No RPi.GPIO found')
+
 
 class L298NHBridge(object):
 
@@ -14,6 +20,8 @@ class L298NHBridge(object):
 
 
     def __init__(self):
+        log.info('Start initializing the engine...')
+
         io.setmode(io.BCM)
         io.setwarnings(False)
 
@@ -45,6 +53,8 @@ class L298NHBridge(object):
 
         self.rightmotorpwm.start(0)
         self.rightmotorpwm.ChangeDutyCycle(0)
+
+        log.info('Engine initialized.')
 
 
     def set_motor_mode(self, motor, mode):

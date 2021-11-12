@@ -4,7 +4,7 @@ import os
 from flask import Flask
 from flask_sockets import Sockets
 
-from pondpi import ui, ws
+from pondpi import ui, ws, ship
 
 
 log.basicConfig(stream=sys.stderr, level=os.environ.get("LOG_LEVEL", "INFO"))
