@@ -6,7 +6,8 @@
     - encrypted/passwords.yml
 
   roles:
-    - base
-    - edimax-7612
+    - { name: base, tags: base }
+    - { name: edimax-7612, tags: wlan }
     - { name: accesspoint, tags: accesspoint }
-    - { name: deploy-test-scripts, tags: deploy-scripts }
+    - { name: deploy-test-scripts, tags: scripts }
+    - { name: deploy-pondpi, tags: deploy }
