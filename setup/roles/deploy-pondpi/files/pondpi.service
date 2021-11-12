@@ -1,0 +1,10 @@
+[Unit]
+Description=Home Control Pi
+After=multi-user.target
+
+[Service]
+ExecStart=/srv/pondpi/pondpi.sh
+Type=forking
+
+[Install]
+WantedBy=multi-user.target

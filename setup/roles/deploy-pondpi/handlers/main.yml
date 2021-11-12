@@ -1,0 +1,6 @@
+---
+  - name: Restart pondpi
+    ansible.builtin.systemd:
+      name: pondpi
+      state: restarted
+      daemon_reload: yes

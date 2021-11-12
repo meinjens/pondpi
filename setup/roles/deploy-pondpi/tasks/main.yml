@@ -1,0 +1,25 @@
+---
+- name: Remove old pondpi directory
+  ansible.builtin.file:
+    path: /srv/pondpi
+    state: absent
+
+- name: Create pondpi directory
+  ansible.builtin.file:
+    path: /srv/pondpi
+    state: directory
+    mode: '0755'
+
+- name: Checkout latest sources
+  ansible.builtin.git:
+    repo: https://github.com/meinjens/pondpi.git
+    dest: /srv/pondpi
+
+- name: Copy service file
+  ansible.builtin.copy:
+    dest: /etc/systemd/system/pondpi.service
+    src: pondpi.service
+    owner: root
+    group: root
+    mode: '0755'
+  notify: 'Restart pondpi'
