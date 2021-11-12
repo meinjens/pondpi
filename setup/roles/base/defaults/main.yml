@@ -3,7 +3,5 @@ prerequisites_packages:
   - curl
   - sudo
   - nano
-  - python-pip
-  - python-rpi.gpio
-
-  
+  - python3-pip
+  - python3-rpi.gpio
