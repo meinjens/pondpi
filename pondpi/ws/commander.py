@@ -5,56 +5,24 @@ from pondpi.ws import ws
 
 @ws.route('/status')
 def echo_socket(socket):
-    app.logger.info('[commander] Getting ship status...')
-    message = socket.receive()
-    app.logger.debug(message)
-    socket.send("Sending ship parameter...")
+    while not socket.closed:
+        message = socket.receive()
+        app.logger.info('[commander] Getting ship status...')
+        socket.send(message)
 
-@ws.route('/speed/set')
-def set_speed(socket):
-    app.logger.debug('[commander] Setting speed and answering...')
-    message = socket.receive()
-    app.logger.debug(message)
-    socket.send("Sending ship parameter...")
+@ws.route('/steering/left')
+def steering_left(socket):
+    while not socket.closed:
+        message = socket.receive()
+        app.logger.info('[commander] Steering left')
+        app.logger.info(message)
+        socket.send(message)
 
-@ws.route('/speed/stop')
-def stop(socket):
-    app.logger.debug('[commander] Making a full stop...')
-    message = socket.receive()
-    app.logger.debug(message)
-    socket.send("Sending ship parameter...")
+@ws.route('/steering/right')
+def steering_right(socket):
+    while not socket.closed:
+        message = socket.receive()
+        app.logger.info('[commander] Steering right')
+        app.logger.info(message)
+        socket.send(message)
 
-@ws.route('/destination/set')
-def set_home(socket):
-    app.logger.debug('[commander] Setting home position...')
-    message = socket.receive()
-    app.logger.debug(message)
-    socket.send("Sending ship parameter...")
-
-@ws.route('/home/set')
-def set_home(socket):
-    app.logger.debug('[commander] Setting home position...')
-    message = socket.receive()
-    app.logger.debug(message)
-    socket.send("Sending ship parameter...")
-
-@ws.route('/home/return')
-def return_to_home(socket):
-    app.logger.debug('[commander] Returning to home...')
-    message = socket.receive()
-    app.logger.debug(message)
-    socket.send("Sending ship parameter...")
-
-@ws.route('/exploration/start')
-def start_exploration(socket):
-    app.logger.debug('[commander] Returning to home...')
-    message = socket.receive()
-    app.logger.debug(message)
-    socket.send("Sending ship parameter...")
-
-@ws.route('/exploration/stop')
-def stop_exploration(socket):
-    app.logger.debug('[commander] Stopping exploration...')
-    message = socket.receive()
-    app.logger.debug(message)
-    socket.send("Sending ship parameter...")
