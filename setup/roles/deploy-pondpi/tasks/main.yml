@@ -15,11 +15,18 @@
     repo: https://github.com/meinjens/pondpi.git
     dest: /srv/pondpi
 
+- name: Install packages
+  ansible.builtin.shell:
+    cmd: pip3 install -r requirements-prod.txt
+    chdir: /srv/pondpi
+  args:
+    executable: /bin/bash
+
 - name: Copy service file
   ansible.builtin.copy:
     dest: /etc/systemd/system/pondpi.service
     src: pondpi.service
     owner: root
     group: root
-    mode: '0755'
+    mode: '0644'
   notify: 'Restart pondpi'
