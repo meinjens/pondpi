@@ -6,8 +6,8 @@ from flask_sockets import Sockets
 
 from pondpi import ui, ws, ship
 
-
 log.basicConfig(stream=sys.stderr, level=os.environ.get("LOG_LEVEL", "INFO"))
+
 
 def create_app():
     app = Flask(__name__, static_folder='../static')

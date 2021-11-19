@@ -7,7 +7,6 @@ except ImportError:
 
 
 class L298NHBridge(object):
-
     PWM_MAX = 100
 
     leftmotor_in1_pin = 27
@@ -17,7 +16,6 @@ class L298NHBridge(object):
     rightmotor_in1_pin = 24
     rightmotor_in2_pin = 25
     rightmotorpwm_pin = 17
-
 
     def __init__(self):
         log.info('Start initializing the engine...')
@@ -55,7 +53,6 @@ class L298NHBridge(object):
         self.rightmotorpwm.ChangeDutyCycle(0)
 
         log.info('Engine initialized.')
-
 
     def set_motor_mode(self, motor, mode):
         # setMotorMode()
@@ -95,7 +92,6 @@ class L298NHBridge(object):
             io.output(self.rightmotor_in1_pin, False)
             io.output(self.rightmotor_in2_pin, False)
 
-
     def setMotorLeft(self, power):
         # SetMotorLeft(power)
 
@@ -126,7 +122,6 @@ class L298NHBridge(object):
         # print "SetMotorLeft", pwm
         self.leftmotorpwm.ChangeDutyCycle(pwm)
 
-
     def setMotorRight(self, power):
         # SetMotorRight(power)
 
@@ -141,15 +136,15 @@ class L298NHBridge(object):
         if power < 0:
             # Reverse mode for the right motor
             self.set_motor_mode("rightmotor", "reverse")
-            pwm = -int(PWM_MAX * power)
-            if pwm > PWM_MAX:
-                pwm = PWM_MAX
+            pwm = -int(self.PWM_MAX * power)
+            if pwm > self.PWM_MAX:
+                pwm = self.PWM_MAX
         elif power > 0:
             # Forward mode for the right motor
             self.set_motor_mode("rightmotor", "forward")
-            pwm = int(PWM_MAX * power)
-            if pwm > PWM_MAX:
-                pwm = PWM_MAX
+            pwm = int(self.PWM_MAX * power)
+            if pwm > self.PWM_MAX:
+                pwm = self.PWM_MAX
         else:
             # Stopp mode for the right motor
             self.set_motor_mode("rightmotor", "stopp")

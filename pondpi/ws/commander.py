@@ -1,7 +1,7 @@
-import flask
 from flask import current_app as app
 
 from pondpi.ws import ws
+
 
 @ws.route('/status')
 def echo_socket(socket):
@@ -9,6 +9,7 @@ def echo_socket(socket):
         message = socket.receive()
         app.logger.info('[commander] Getting ship status...')
         socket.send(message)
+
 
 @ws.route('/steering/left')
 def steering_left(socket):
@@ -18,6 +19,7 @@ def steering_left(socket):
         app.logger.info(message)
         socket.send(message)
 
+
 @ws.route('/steering/right')
 def steering_right(socket):
     while not socket.closed:
@@ -25,4 +27,3 @@ def steering_right(socket):
         app.logger.info('[commander] Steering right')
         app.logger.info(message)
         socket.send(message)
-
