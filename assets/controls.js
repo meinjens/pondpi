@@ -36,8 +36,7 @@ jquery(document).ready(function () {
 
   const steeringLeft = nipplejs.create({
     zone: document.getElementById('engine_left'),
-    mode: 'static',
-    position: { left: '50%', top: '50%' },
+    mode: 'dynamic',
     fadeTime: 500,
     color: 'blue',
     size: 200,
@@ -68,8 +67,7 @@ jquery(document).ready(function () {
 
   const steeringRight = nipplejs.create({
     zone: document.getElementById('engine_right'),
-    mode: 'static',
-    position: { left: '50%', top: '50%' },
+    mode: 'dynamic',
     fadeTime: 500,
     color: 'red',
     size: 200,
