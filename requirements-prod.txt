@@ -8,6 +8,6 @@ gunicorn==20.1.0
 itsdangerous==1.1.0
 Jinja2==2.11.3
 MarkupSafe==2.0.1
-Werkzeug==2.2.3
+Werkzeug==2.3.8
 zope.event==4.5.0
 zope.interface==5.4.0
