@@ -8,7 +8,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "dev": "webpack --watch"
+    "dev": "webpack --watch",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -21,36 +22,33 @@
   },
   "homepage": "https://github.com/meinjens/pondpi#readme",
   "devDependencies": {
-    "@babel/core": "^7.16.7",
-    "@babel/preset-env": "^7.16.8",
-    "@fortawesome/fontawesome-free": "^5.15.4",
+    "@babel/core": "^8.0.10",
+    "@babel/preset-env": "^8.0.7",
+    "@fortawesome/fontawesome-free": "^7.3.1",
     "@popperjs/core": "^2.11.8",
-    "@webpack-cli/serve": "^1.6.0",
     "admin-lte": "^4.0.0-beta3",
-    "babel-loader": "^8.2.3",
+    "babel-loader": "^10.1.1",
     "bootstrap": "^5.3.3",
-    "css-loader": "^5.2.7",
+    "css-loader": "^7.1.5",
     "eslint": "^9.39.5",
-    "expose-loader": "^2.0.0",
-    "file-loader": "^6.2.0",
+    "expose-loader": "^5.0.1",
     "globals": "^17.13.0",
-    "jquery": "^3.6.0",
+    "jquery": "^3.7.1",
     "jquery-knob": "^1.2.11",
     "json-schema": "^0.4.0",
     "less": "^4.1.2",
-    "less-loader": "^8.1.1",
-    "mini-css-extract-plugin": "^1.6.2",
+    "less-loader": "^13.1.0",
+    "mini-css-extract-plugin": "^2.10.2",
     "neostandard": "^0.14.1",
     "sass": "^1.107.1",
-    "sass-loader": "^11.1.1",
-    "style-loader": "^2.0.0",
-    "url-loader": "^4.1.1",
+    "sass-loader": "^17.1.0",
+    "style-loader": "^4.0.0",
     "webpack": "^5.97.1",
-    "webpack-cli": "^4.9.1",
-    "webpack-dev-server": "^5.2.1"
+    "webpack-cli": "^7.3.1",
+    "webpack-dev-server": "^6.1.0"
   },
   "dependencies": {
-    "nipplejs": "^0.9.0"
+    "nipplejs": "^1.0.4"
   },
   "engines": {
     "node": ">=16 <17"

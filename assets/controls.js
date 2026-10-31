@@ -11,7 +11,7 @@ jquery(document).ready(function () {
   steeringEngineLeft = new WebSocket('ws://localhost:5000/ws/steering/left')
   steeringEngineRight = new WebSocket('ws://localhost:5000/ws/steering/right')
 
-  steeringEngineLeft.onopen = function() {
+  steeringEngineLeft.onopen = function () {
     console.log('[left] connection to engine')
   }
   steeringEngineLeft.onclose = function (event) {
