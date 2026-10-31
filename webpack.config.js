@@ -1,6 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
-const css = require('mini-css-extract-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   mode: 'development',
@@ -20,19 +20,24 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: [css.loader, 'css-loader', 'sass-loader']
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          // keep third-party (Bootstrap/AdminLTE) deprecation noise out of the build output
+          { loader: 'sass-loader', options: { sassOptions: { quietDeps: true } } }
+        ]
       },
       {
         test: /\.less$/,
-        use: [css.loader, 'css-loader', 'less-loader']
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader']
       },
       {
         test: /\.css$/,
-        use: [css.loader, 'css-loader']
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
       },
       {
         test: /\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?)/,
-        use: ['url-loader']
+        type: 'asset'
       },
       {
         test: require.resolve('jquery'),
@@ -44,7 +49,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new css({
+    new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css'
     }),

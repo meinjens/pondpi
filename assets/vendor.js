@@ -1,5 +1,5 @@
 // jquery
-import jquery from 'jquery'
+import 'jquery'
 import 'jquery-knob'
 
 // bootstrap

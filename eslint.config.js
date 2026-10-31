@@ -2,7 +2,8 @@ const neostandard = require('neostandard')
 const globals = require('globals')
 
 module.exports = [
-  ...neostandard({ ignores: ['static/**', 'node_modules/**'] }),
+  { ignores: ['static/**', '.venv/**'] },
+  ...neostandard(),
   {
     languageOptions: {
       globals: globals.browser
