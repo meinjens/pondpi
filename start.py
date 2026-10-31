@@ -1,17 +1,16 @@
 #!/usr/bin/python3
 
 import os
-import logging as log
-import sys
 
-log.basicConfig(stream=sys.stderr, level=os.environ.get("LOG_LEVEL", "INFO"))
-
-start_command="".join([
-    "gunicorn -w 4 -b :5000 ",
-    "--access-logfile - ",
-    "--error-logfile - ",
-    "--preload ",
-    "-k flask_sockets.worker ",
-    "'pondpi:create_app()'"])
-
-os.system(start_command)
+# flask-sock needs a threaded worker (one thread per websocket). A single process
+# keeps the GPIO state in one place.
+os.execvp("gunicorn", [
+    "gunicorn",
+    "-w", "1",
+    "--threads", "50",
+    "-b", ":5000",
+    "--access-logfile", "-",
+    "--error-logfile", "-",
+    "--preload",
+    "pondpi:create_app()",
+])

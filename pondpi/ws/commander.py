@@ -1,29 +1,26 @@
 from flask import current_app as app
 
-from pondpi.ws import ws
+from pondpi.ws import sock
 
 
-@ws.route('/status')
-def echo_socket(socket):
-    while not socket.closed:
+def _echo(socket, action):
+    while True:
         message = socket.receive()
-        app.logger.info('[commander] Getting ship status...')
+        app.logger.info('[commander] %s', action)
+        app.logger.info(message)
         socket.send(message)
 
 
-@ws.route('/steering/left')
+@sock.route('/ws/status')
+def status(socket):
+    _echo(socket, 'Getting ship status...')
+
+
+@sock.route('/ws/steering/left')
 def steering_left(socket):
-    while not socket.closed:
-        message = socket.receive()
-        app.logger.info('[commander] Steering left')
-        app.logger.info(message)
-        socket.send(message)
+    _echo(socket, 'Steering left')
 
 
-@ws.route('/steering/right')
+@sock.route('/ws/steering/right')
 def steering_right(socket):
-    while not socket.closed:
-        message = socket.receive()
-        app.logger.info('[commander] Steering right')
-        app.logger.info(message)
-        socket.send(message)
+    _echo(socket, 'Steering right')

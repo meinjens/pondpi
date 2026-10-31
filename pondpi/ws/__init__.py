@@ -1,5 +1,5 @@
-from flask import Flask, Blueprint
+from flask_sock import Sock
 
-ws = Blueprint(r'ws', __name__)
+sock = Sock()
 
-from pondpi.ws import commander
+from pondpi.ws import commander  # noqa: E402,F401
